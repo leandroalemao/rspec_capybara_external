@@ -1,0 +1,27 @@
+This is a basic proof of concept. Based on the example from https://github.com/beckelmw/Capybara-External-Testing
+
+This uses: 
+ * rspec
+ * capybara
+ * selenium
+ * and an external website
+
+It's a basic point and click robot that doesn't require a local rails app to exist. 
+
+It's useful for automated web interface testing on external addresses, where the ability to run an application locally is restricted or in the too-hard basket. 
+
+How to:
+
+1. `bundle install`
+2. `bundle exec rspec`
+3. ... <firefox>
+4. completed test.
+
+But what about headlessness?
+
+You can do this, but I wanted a click-and-point robot. 
+
+You can headless by going: 
++require 'capybara/webkit'
++Capybara.default_driver = :webkit
+
