@@ -1,8 +1,6 @@
 require 'spec_helper'
 
-feature "Google Search" do
-
-	SUBJECT = "Ada Lovelace"
+feature "Bitcoin Exchange Rate Search" do
 
 	before do |example|
 	  unless example.metadata[:skip_before]
@@ -12,7 +10,7 @@ feature "Google Search" do
 				@foxbit_value = all(:xpath, "//table/tbody/tr")[2].text.split(" ")[-2]
 			end
 			visit "/"
-			fill_in "LoginDialog_loginInput", with: "leandroalemao"
+			fill_in "LoginDialog_loginInput", with: ENV['SPEEDY_USR']
 			fill_in "LoginDialog_passwordInput", with: ENV['SPEEDY_PWD']
 			find("#LoginDialog_cmdLogin").click
 			@bitcoin_price = find("#base_currentprice").text
@@ -23,7 +21,7 @@ feature "Google Search" do
 
 	it "sends an email" do
 		visit "https://mandrillapp.com/compose"
-		fill_in "username", with: "leandro.costantini@gmail.com"
+		fill_in "username", with: ENV['MANDRILL_USR']
 		fill_in "password", with: ENV['MANDRILL_PWD']
 		find_button("Log In").click
 		fill_in "from", with: "bitcoin@leandroalemao.co.uk"
