@@ -6,8 +6,12 @@ feature "Bitcoin Exchange Rate Search" do
 	  unless example.metadata[:skip_before]
 			visit 'https://www.coinbr.net/bitcoins/o-mercado-de-bitcoins/'
 			within("#market-table") do
-				@foxbit = all(:xpath, "//table/tbody/tr")[2].text.split(" ")[0]
-				@foxbit_value = all(:xpath, "//table/tbody/tr")[2].text.split(" ")[-2]
+				all(:xpath, "//table/tbody/tr").each do |a|
+					if a.text.match(/^Foxbit/)
+						@foxbit = a.text.split(" ")[0]
+						@foxbit_value = a.text.split(" ")[-2]
+					end
+				end
 			end
 			visit "/"
 			fill_in "LoginDialog_loginInput", with: ENV['SPEEDY_USR']
