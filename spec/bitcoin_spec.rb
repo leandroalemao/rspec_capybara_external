@@ -33,7 +33,7 @@ feature "Bitcoin Exchange Rate Search" do
 		fill_in "from", with: "bitcoin@leandroalemao.co.uk"
 		fill_in "to", with: "leandro.costantini@gmail.com"
 		fill_in "subject", with: "Bitcoin Ticker: " + @time
-		@email_text = [@foxbit, @foxbit_min_value, @foxbit_max_value, @bitcoin_price, @min_cotacao, @min_cotacao].join(" ")
+		@email_text = [@foxbit, @foxbit_min_value, @foxbit_max_value, @bitcoin_price, @min_cotacao, @max_cotacao].join(" ")
 		page.execute_script("$(tinyMCE.editors[0].setContent('#{@email_text}'))")
 		find_button("Send").click
 	end
