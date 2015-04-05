@@ -8,7 +8,6 @@ feature "Bitcoin Exchange Rate Search" do
 			within("#market-table") do
 				all(:xpath, "//table/tbody/tr").each do |a|
 					if a.text.match(/^Foxbit/)
-						binding.pry
 						@foxbit = a.text.split(" ")[0]
 						@foxbit_min_value = a.text.split(" ")[-2]
 						@foxbit_max_value = format("R$%.2f",((a.text.split(" ")[1].gsub(/[^\d\.]/, '').to_f / 1.0124) / 1.0124).round(2))
